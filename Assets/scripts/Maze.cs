@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Maze : MonoBehaviour
 {
-    public List<MapLocation> directions = new List<MapLocation>() {
-                                            new MapLocation(1,0),
-                                            new MapLocation(0,1),
-                                            new MapLocation(-1,0),
-                                            new MapLocation(0,-1) };
+    public List<MapLocationStruct> directions = new List<MapLocationStruct>() {
+                                            new MapLocationStruct(1,0),
+                                            new MapLocationStruct(0,1),
+                                            new MapLocationStruct(-1,0),
+                                            new MapLocationStruct(0,-1) };
     
     public int width = 30; //x length
     public int depth = 30; //z length
