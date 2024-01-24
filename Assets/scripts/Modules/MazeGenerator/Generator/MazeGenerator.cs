@@ -1,8 +1,11 @@
 
+using System;
 using UnityEngine;
 
 namespace Modules.MazeGenerator
 {
+    //TODO - временный костыль, пока ещё нет инджекций
+    [DefaultExecutionOrder(-500)]
     public class MazeGenerator : MonoBehaviour
     {
         [SerializeField] private bool _isOptimization;
@@ -10,7 +13,7 @@ namespace Modules.MazeGenerator
         [SerializeField] private int _depth = 30;
         [SerializeField] private int _scale = 5;
         private byte[,] _map;
-        private MazeData mazePack;
+        [NonSerialized]public MazeData mazePack;
         void Start()
         {
             mazePack = FullMazeData(_width, _depth, _map, _scale);

@@ -15,7 +15,7 @@ namespace Modules.MazeGenerator
         public void Generate()
         {
             Stack<MapLocationStruct> stack = new Stack<MapLocationStruct>();
-            stack.Push(new MapLocationStruct(5, 5));
+            stack.Push(new MapLocationStruct(MazeConstants.XCord,MazeConstants.YCord));
 
             while (stack.Count > 0)
             {

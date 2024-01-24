@@ -2,7 +2,7 @@ namespace Modules.MazeGenerator
 {
     public static class MazeConstants
     {
-        public static int XCord;
-        public static int YCord;
+        public  const int XCord = 5;
+        public const int YCord = 5;
     }
 }

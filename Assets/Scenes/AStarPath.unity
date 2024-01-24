@@ -425,8 +425,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1005088011}
   - component: {fileID: 1005088014}
+  - component: {fileID: 1005088015}
   m_Layer: 0
-  m_Name: Maze
+  m_Name: "Maze(\u0413\u0430\u0432\u043D\u043E\u043A\u043E\u0434)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,6 +463,68 @@ MonoBehaviour:
   width: 30
   depth: 30
   scale: 5
+--- !u!114 &1005088015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005088009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64a52a9398c38d449ea11f1cb4217c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maze: {fileID: 1005088014}
+  closedMaterial: {fileID: 2100000, guid: 2aba21f0a42b3394c896460ac46c2872, type: 2}
+  openMaterial: {fileID: 2100000, guid: 4caa8ea5cb1b7184cbcd33dcb92d77af, type: 2}
+  start: {fileID: 8425569736168324524, guid: 61f3228b30dfe664fa67f10c2d9f7d99, type: 3}
+  end: {fileID: 318548452001391808, guid: 720e11f1479aac941bc68318514dbf41, type: 3}
+  pathP: {fileID: 8142597529019607751, guid: 994cb883044dc5446890d8220d960c69, type: 3}
+--- !u!1 &1013567579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013567580}
+  - component: {fileID: 1013567581}
+  m_Layer: 0
+  m_Name: MarkFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1013567580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013567579}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.245102, y: -14.188324, z: 88.81512}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1013567581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013567579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9d7e7a468340d2b1ddb5b2c7c47ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!850595691 &1160735724
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -526,6 +589,50 @@ LightingSettings:
   m_PVRTiledBaking: 0
   m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
+--- !u!1 &1209910357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1209910358}
+  - component: {fileID: 1209910359}
+  m_Layer: 0
+  m_Name: FactoryTester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1209910358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209910357}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.245102, y: -14.188324, z: 88.81512}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1209910359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209910357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafedc2e591f6354d8712d09e188a5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1932816746
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932816748}
   - component: {fileID: 1932816747}
+  - component: {fileID: 1932816749}
   m_Layer: 0
   m_Name: MazeGenerator
   m_TagString: Untagged
@@ -555,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bb4a1c31fd0574086230b7595cf864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOptimization: 0
+  _isOptimization: 1
   _width: 30
   _depth: 30
   _scale: 5
@@ -574,6 +682,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1932816749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932816746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59dff1f1cef9324fa071526502d5cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _marksCreater: {fileID: 1013567581}
+  _maze: {fileID: 1932816747}
+  closedMaterial: {fileID: 0}
+  openMaterial: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -583,3 +707,5 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 622733335}
   - {fileID: 1932816748}
+  - {fileID: 1209910358}
+  - {fileID: 1013567580}
