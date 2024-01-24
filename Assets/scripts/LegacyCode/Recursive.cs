@@ -6,7 +6,7 @@ public class Recursive : Maze
 {
     #region С Рекурсией
 
-    /*public override void Generate()
+    public override void Generate()
     {
         Generate(5, 5);
     }
@@ -22,13 +22,13 @@ public class Recursive : Maze
         Generate(x + directions[1].x, z + directions[1].z);
         Generate(x + directions[2].x, z + directions[2].z);
         Generate(x + directions[3].x, z + directions[3].z);
-    }*/
+    }
     
     #endregion
 
     #region Без рекурсии
 
-    public override void Generate()
+    /*public override void Generate()
     {
         Stack<MapLocationStruct> stack = new Stack<MapLocationStruct>();
         stack.Push(new MapLocationStruct(5, 5));
@@ -59,7 +59,7 @@ public class Recursive : Maze
                 stack.Push(next);
             }
         }
-    }
+    }*/
     
     #endregion
 
