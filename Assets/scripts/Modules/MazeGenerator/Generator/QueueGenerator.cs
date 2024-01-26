@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Lesson_4.Lesson4_GameSystem.Scripts.DIFramework;
 
 namespace Modules.MazeGenerator
 {
@@ -26,9 +27,9 @@ namespace Modules.MazeGenerator
 
                 _directions.map[current.x, current.z] = 0;  // Прорубаем путь
 
-                _directions.directions.Shuffle();
+                Directions.directions.Shuffle();
 
-                foreach (var direction in _directions.directions)
+                foreach (var direction in Directions.directions)
                 {
                     MapLocationStruct next = current + direction;
 
@@ -43,6 +44,12 @@ namespace Modules.MazeGenerator
                     stack.Push(next);
                 }
             }
+            GetMapData();
+        }
+
+        private void GetMapData()
+        {
+            MazeServiceLocator.Instance.BindMazeData(typeof(byte[,]), _directions.map);
         }
     }
 }

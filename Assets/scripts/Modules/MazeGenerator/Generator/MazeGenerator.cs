@@ -13,14 +13,16 @@ namespace Modules.MazeGenerator
         [SerializeField] private int _depth = 30;
         [SerializeField] private int _scale = 5;
         private byte[,] _map;
-        [NonSerialized]public MazeData mazePack;
+        [NonSerialized]public MazeData MazePack;
+        private MazeServiceLocator _serviceLocator;
+        
         void Start()
         {
-            mazePack = FullMazeData(_width, _depth, _map, _scale);
+            MazePack = FullMazeData(_width, _depth, _map, _scale);
             GeneraterInstaller generaterIinstaller = new GeneraterInstaller();
             DrawerInstaller drawerInstaller = new DrawerInstaller();
-            IGenerate generater = generaterIinstaller.GetGenerator(_isOptimization,mazePack);
-            IMazeDrawer mazeDrawer = drawerInstaller.GetDrawer(mazePack);
+            IGenerate generater = generaterIinstaller.GetGenerator(_isOptimization,MazePack);
+            IMazeDrawer mazeDrawer = drawerInstaller.GetDrawer(MazePack);
             generater.Generate();
             mazeDrawer.DrawMap();
         }

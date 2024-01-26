@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bb4a1c31fd0574086230b7595cf864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOptimization: 1
+  _isOptimization: 0
   _width: 30
   _depth: 30
   _scale: 5
@@ -696,8 +696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _marksCreater: {fileID: 1013567581}
   _maze: {fileID: 1932816747}
-  closedMaterial: {fileID: 0}
-  openMaterial: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

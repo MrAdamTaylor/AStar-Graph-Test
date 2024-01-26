@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MazePathMarker
@@ -11,12 +9,12 @@ public class MazePathMarker
     public GameObject marker;
     public MazePathMarker parent;
 
-    public MazePathMarker(MapLocationStruct l, float g, float h, float f, GameObject marker, MazePathMarker p)
+    public MazePathMarker(MapLocationStruct l, PathScores scores, GameObject marker, MazePathMarker p)
     {
         location = l;
-        G = g;
-        H = h;
-        F = f;
+        G = scores.GScore;
+        H = scores.HScore;
+        F = scores.FScore;
         this.marker = marker;
         parent = p;
     }
