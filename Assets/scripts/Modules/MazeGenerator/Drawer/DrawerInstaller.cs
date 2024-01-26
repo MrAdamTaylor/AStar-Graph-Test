@@ -2,11 +2,9 @@ namespace Modules.MazeGenerator
 {
     public class DrawerInstaller
     {
-    
-    
-        public IMazeDrawer GetDrawer(MazeData mazeData)
+        public IMazeDrawer GetDrawer()
         {
-            IMazeDrawer mazeDrawer = new MazeDrawer(mazeData);
+            IMazeDrawer mazeDrawer = new MazeDrawer();
             return mazeDrawer;
         }
     }

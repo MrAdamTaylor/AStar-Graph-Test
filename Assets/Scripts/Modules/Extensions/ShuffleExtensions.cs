@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Extensions
+public static class ShuffleExtensions
 {
     private static System.Random rng = new System.Random();
     public static void Shuffle<T>(this IList<T> list)
@@ -12,9 +13,7 @@ public static class Extensions
         {
             n--;
             int k = rng.Next(n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value; 
+            (list[k], list[n]) = (list[n], list[k]);
         }
     }
 

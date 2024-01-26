@@ -22,12 +22,12 @@ public class MazeLocations
         }
     }
     
-    public MazeLocations(byte[,] mapData, MazeData data)
+    /*public MazeLocations(byte[,] mapData, MazeData data)
     {
         UsefulLocation = new List<MapLocationStruct>();
-        for (int z = 0; z < data.Depth; z++)
+        for (int z = 1; z < data.Depth - 1; z++)
         {
-            for (int x =0; x < data.Width; x++)
+            for (int x = 1; x < data.Width - 1; x++)
             {
                 if (mapData[x, z] != 1)
                 {
@@ -35,7 +35,7 @@ public class MazeLocations
                 }
             }
         }
-    }
+    }*/
 
     public void Shuffle()
     {

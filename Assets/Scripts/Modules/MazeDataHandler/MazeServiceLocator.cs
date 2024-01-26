@@ -28,6 +28,14 @@ public class MazeServiceLocator
 
     public void BindMazeData(Type type, object mazeData)
     {
-        _mazeDataBase.Add(type, mazeData);
+        if (_mazeDataBase.ContainsKey(type))
+        {
+            _mazeDataBase[type] = mazeData;
+        }
+        else
+        {
+            _mazeDataBase.Add(type, mazeData);
+        }
+
     }
 }

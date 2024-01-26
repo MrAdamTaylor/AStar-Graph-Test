@@ -2,12 +2,10 @@ namespace Modules.MazeGenerator
 {
     public class RecursiveGenerator : IGenerate
     {
-        private Directions _directions;
         private MazeData _mazeData;
 
         public RecursiveGenerator(MazeData mazeData)
         {
-            _directions = new Directions(mazeData.Map);
             _mazeData = mazeData;
         }
 
@@ -20,8 +18,8 @@ namespace Modules.MazeGenerator
         public void RecusiveGenerate(int x, int z)
         {
             if (NeighboursHandler.CountSquareNeighbours(x, z, _mazeData) >= 2) return;
-            //_mazeData.Map[x, z] = 0;
-            _directions.map[x, z] = 0;
+                _mazeData.Map[x, z] = 0;
+            //_directions.map[x, z] = 0;
 
             Directions.directions.Shuffle();
 
@@ -33,7 +31,8 @@ namespace Modules.MazeGenerator
         
         private void GetMapData()
         {
-            MazeServiceLocator.Instance.BindMazeData(typeof(byte[,]), _directions.map);
+            //MazeServiceLocator.Instance.BindMazeData(typeof(byte[,]), _directions.map);
+            MazeServiceLocator.Instance.BindMazeData(typeof(MazeData), _mazeData);
         }
     }
 }

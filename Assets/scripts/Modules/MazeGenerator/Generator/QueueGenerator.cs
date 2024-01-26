@@ -6,11 +6,9 @@ namespace Modules.MazeGenerator
     public class QueueGenerator : IGenerate
     {
         private MazeData _mazeData;
-        private Directions _directions;
         public QueueGenerator(MazeData mazeData)
         {
             _mazeData = mazeData;
-            _directions = new Directions(mazeData.Map);
         }
 
         public void Generate()
@@ -25,7 +23,7 @@ namespace Modules.MazeGenerator
                 if (NeighboursHandler.CountSquareNeighbours(current.x, current.z, _mazeData) >= 2)
                     continue;
 
-                _directions.map[current.x, current.z] = 0;  // Прорубаем путь
+                _mazeData.Map[current.x, current.z] = 0;  // Прорубаем путь
 
                 Directions.directions.Shuffle();
 
@@ -44,12 +42,13 @@ namespace Modules.MazeGenerator
                     stack.Push(next);
                 }
             }
-            GetMapData();
+            PackData();
         }
 
-        private void GetMapData()
+        private void PackData()
         {
-            MazeServiceLocator.Instance.BindMazeData(typeof(byte[,]), _directions.map);
+            //MazeServiceLocator.Instance.BindMazeData(typeof(byte[,]), _directions.map);
+            MazeServiceLocator.Instance.BindMazeData(typeof(MazeData), _mazeData);
         }
     }
 }
