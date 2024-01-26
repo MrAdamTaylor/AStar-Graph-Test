@@ -1,9 +1,9 @@
 public struct PathScores
 {
-    public int GScore;
-    public int FScore;
-    public int HScore;
-    public PathScores(int g, int f, int h)
+    public float GScore;
+    public float FScore;
+    public float HScore;
+    public PathScores(float g, float f, float h)
     {
         GScore = g;
         FScore = f;

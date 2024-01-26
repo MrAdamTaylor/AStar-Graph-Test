@@ -8,6 +8,7 @@ public class MazePathStarter : MonoBehaviour
 {
     [SerializeField] private MarksCreater _marksCreater;
     [SerializeField] private MazeGenerator _maze;
+    [SerializeField] private MazePathMarkerHandler _mazePathMarkerHandler;
 
     #region Материалы 
         //public Material closedMaterial;
@@ -32,7 +33,7 @@ public class MazePathStarter : MonoBehaviour
     
     private MazeLocations _locations;
     private ScoresHandler _scoresHandler;
-    private MazePathMarkerHandler _mazePathMarkerHandler;
+    //private MazePathMarkerHandler _mazePathMarkerHandler;
     private MazePathMarker _lastNode;
 
     void Start()
@@ -51,12 +52,18 @@ public class MazePathStarter : MonoBehaviour
         {
             BeginSearch();
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Search(_lastNode);
+        }
     }
 
     private void BeginSearch()
     {
         _done = false;
-        RemoveAllMarkers();
+        _mazePathMarkerHandler.RemoveAllMarkers();
+        //RemoveAllMarkers();
         _locations.Shuffle();
         Vector3 startPos = new Vector3(_locations.GetXByIndex(0) * _data.Scale, 0.0f, _locations.GetZByIndex(0) * _data.Scale);
         _startNode = new MazePathMarker(
@@ -94,11 +101,18 @@ public class MazePathStarter : MonoBehaviour
                 continue;
             if (_closedMapList.IsClodes(neighbour))
                 continue;
-            ScoresHandler.CalculateGValue(thisNode.location.ToVector(), neighbour.ToVector(), thisNode.G);
-            ScoresHandler.CalculateHValue(thisNode.location.ToVector(), neighbour.ToVector());
+            float g = ScoresHandler.CalculateGValue(thisNode.location.ToVector(), neighbour.ToVector(), thisNode.G);
+            float h = ScoresHandler.CalculateHValue(thisNode.location.ToVector(), neighbour.ToVector());
+            float f = ScoresHandler.CalculateFValue();
+            PathScores scores = _scoresHandler.GetScoresDataAStar(f,g,h);
+            ScoresHandler.ClearCache();
+            Vector3 intermediatePos = new Vector3(neighbour.x * _data.Scale, 0, neighbour.z * _data.Scale);
+            GameObject pathBlock = _marksCreater.CreateIntermediate(intermediatePos);
+            _mazePathMarkerHandler.SetText(pathBlock, _scoresHandler.GetScoresDataAStar(f,g,h));
         }
     }
 
+    //TODO - это тоже надо вынести в отдельный сервис Handler
     private void RemoveAllMarkers()
     {
         GameObject[] markers = GameObject.FindGameObjectsWithTag("marker");
@@ -107,10 +121,4 @@ public class MazePathStarter : MonoBehaviour
             Destroy(m);
         }
     }
-}
-
-
-public class MazePathMarkerHandler
-{
-    
 }
