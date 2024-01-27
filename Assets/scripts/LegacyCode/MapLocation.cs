@@ -19,7 +19,7 @@ public class MapLocation
     public static MapLocation operator +(MapLocation a, MapLocation b)
         => new MapLocation(a.x + b.x, a.z + b.z);
 
-    /*public override bool Equals(object obj)
+    public override bool Equals(object obj)
     {
         if ((obj == null) || !this.GetType().Equals(obj.GetType()))
             return false;
@@ -30,6 +30,6 @@ public class MapLocation
     public override int GetHashCode()
     {
         return 0;
-    }*/
+    }
 
 }

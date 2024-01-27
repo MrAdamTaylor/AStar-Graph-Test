@@ -102,7 +102,7 @@ public class MazePathStarter : MonoBehaviour
             if (_closedMapList.IsClodes(neighbour))
                 continue;
             float g = ScoresHandler.CalculateGValue(thisNode.location.ToVector(), neighbour.ToVector(), thisNode.G);
-            float h = ScoresHandler.CalculateHValue(thisNode.location.ToVector(), neighbour.ToVector());
+            float h = ScoresHandler.CalculateHValue(neighbour.ToVector(), _goalNode.location.ToVector());
             float f = ScoresHandler.CalculateFValue();
             PathScores scores = _scoresHandler.GetScoresDataAStar(f,g,h);
             ScoresHandler.ClearCache();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FindPathAStar : MonoBehaviour
@@ -47,11 +48,11 @@ public class FindPathAStar : MonoBehaviour
         locations.Shuffle();
 
         Vector3 startLocation = new Vector3(locations[0].x * maze.scale, 0, locations[0].z * maze.scale);
-        _startNode = new PathMarker(new MapLocation(locations[0].x * maze.scale, locations[0].z * maze.scale), 
+        _startNode = new PathMarker(new MapLocation(locations[0].x, locations[0].z), 
             0, 0, 0, Instantiate(start, startLocation, Quaternion.identity), null);
 
         Vector3 finishLocation = new Vector3(locations[1].x * maze.scale, 0, locations[1].z * maze.scale);
-        _goalNode = new PathMarker(new MapLocation(locations[1].x * maze.scale, locations[1].z * maze.scale), 
+        _goalNode = new PathMarker(new MapLocation(locations[1].x, locations[1].z), 
             0, 0, 0, Instantiate(end, finishLocation, Quaternion.identity), null);
         
         open.Clear();
@@ -63,6 +64,14 @@ public class FindPathAStar : MonoBehaviour
 
     void Search(PathMarker thisNode)
     {
+        #region Проверка на то, что алгоритм существует
+
+            if(thisNode == null)
+                return;
+
+        #endregion
+        
+        
         if (thisNode.Equals(_goalNode))
         {
             _done = true;
@@ -77,18 +86,63 @@ public class FindPathAStar : MonoBehaviour
             if(IsClosed(neighbour)) continue;
 
             float G = Vector2.Distance(thisNode.location.ToVector(), neighbour.ToVector()) + thisNode.G;
-            float H = Vector2.Distance(thisNode.location.ToVector(), neighbour.ToVector());
+            float H = Vector2.Distance(neighbour.ToVector(), _goalNode.location.ToVector());
             float F = G + H;
             Debug.Log($"G-Value: {G}, H-Value: {H}, F-Value: {F}");
 
             GameObject pathBlock = Instantiate(pathP, new Vector3(neighbour.x * maze.scale, 0,
                 neighbour.z * maze.scale), Quaternion.identity);
+
+            TextMesh[] values = pathBlock.GetComponentsInChildren<TextMesh>();
+            values[0].text = "G " + G.ToString("0.00");
+            values[1].text = "H " + H.ToString("0.00");
+            values[2].text = "F " + F.ToString("0.00");
+
+            #region MyRegion
+
+                if(!UpdateMarker(neighbour, G, H, F, thisNode))
+                    open.Add(new PathMarker(neighbour, G, H, F, pathBlock, thisNode));
+
+            #endregion
+            
         }
+
+        #region Добавление нового элемента
+            open = open.OrderBy(p => p.F).ToList<PathMarker>();
+            PathMarker pm = open.ElementAt(0);
+            closed.Add(pm);
+        #endregion
+        
+        
+        open.RemoveAt(0);
+        pm.marker.GetComponent<Renderer>().material = closedMaterial;
+
+        _lastNode = pm;
     }
 
-    private bool IsClosed(MapLocation neighbour)
+    bool UpdateMarker(MapLocation pos, float g, float h, float f, PathMarker prt)
     {
-        throw new NotImplementedException();
+        foreach (PathMarker p in open)
+        {
+            if (p.location.Equals(pos))
+            {
+                p.G = g;
+                p.H = h;
+                p.F = f;
+                p.parent = prt;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool IsClosed(MapLocation marker)
+    {
+        foreach (PathMarker p in closed)
+        {
+            if (p.location.Equals(marker)) return true;
+        }
+        return false;
     }
 
     void RemoveAllMarkers()
@@ -105,6 +159,11 @@ public class FindPathAStar : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             BeginSearch();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Search(_lastNode);
         }
     }
 }
