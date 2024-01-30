@@ -10,9 +10,9 @@ public class MazeLocations
     public MazeLocations(MazeData data)
     {
         UsefulLocation = new List<MapLocationStruct>();
-        for (int z = 1; z < data.Depth - 1; z++)
+        for (int z = 1; z < data.Depth; ++z)
         {
-            for (int x = 1; x < data.Width - 1; x++)
+            for (int x = 1; x < data.Width; ++x)
             {
                 if (data.Map[x, z] != 1)
                 {

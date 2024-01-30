@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ClosedMapList
 {
@@ -32,6 +33,11 @@ public class ClosedMapList
             return false;
         }
 
+        /*if (_closed == null)
+        {
+            _closed = new List<MazePathMarker>();
+        }*/
+
         foreach (MazePathMarker path in _closed)
         {
             //TODO - надо проверить в первоисточниках, не используется ли этот метод
@@ -40,4 +46,5 @@ public class ClosedMapList
         }
         return false;
     }
+    
 }

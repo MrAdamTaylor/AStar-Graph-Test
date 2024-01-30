@@ -20,4 +20,12 @@ public struct MapLocationStruct
 
     public static MapLocationStruct operator +(MapLocationStruct a, MapLocationStruct b)
         => new MapLocationStruct(a.x + b.x, a.z + b.z);
+    
+    public override bool Equals(object obj)
+    {
+        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            return false;
+        else
+            return x == ((MapLocationStruct)obj).x && z == ((MapLocationStruct)obj).z;
+    }
 }

@@ -17,7 +17,7 @@ public class AStarScoreWriter : IScoreWriter
     public void WriteScores()
     {
         _gString.text = "G: " + _scores.GScore.ToString("0.00");
-        _hString.text = "H: " + _scores.GScore.ToString("0.00");
-        _fString.text = "F: " + _scores.GScore.ToString("0.00"); 
+        _hString.text = "H: " + _scores.HScore.ToString("0.00");
+        _fString.text = "F: " + _scores.FScore.ToString("0.00"); 
     }
 }

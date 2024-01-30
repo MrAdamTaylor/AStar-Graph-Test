@@ -70,9 +70,9 @@ public class MazePathStarter : MonoBehaviour
             new MapLocationStruct(_locations.GetXByIndex(0),_locations.GetZByIndex(0)),
             _scoresHandler.GetZeroScores(), _marksCreater.CreateStart(startPos), null
         );
-        Vector3 finishPos = new Vector3(_locations.GetXByIndex(1) * _data.Scale, 0.0f, _locations.GetXByIndex(1) * _data.Scale);
+        Vector3 finishPos = new Vector3(_locations.GetXByIndex(1) * _data.Scale, 0.0f, _locations.GetZByIndex(1) * _data.Scale);
         _goalNode = new MazePathMarker(
-            new MapLocationStruct(_locations.GetXByIndex(1),_locations.GetXByIndex(1)),
+            new MapLocationStruct(_locations.GetXByIndex(1),_locations.GetZByIndex(1)),
             _scoresHandler.GetZeroScores(), _marksCreater.CreateFinish(finishPos), null
         );
         _openMapList.Clear();
@@ -83,6 +83,7 @@ public class MazePathStarter : MonoBehaviour
 
     public void Search(MazePathMarker thisNode)
     {
+        if(thisNode == null) return;
         if (thisNode.Equals(_goalNode))
         {
             _done = true;
@@ -93,32 +94,52 @@ public class MazePathStarter : MonoBehaviour
         {
             MapLocationStruct neighbour = dir + thisNode.location;
             //TODO - тоже можно вынести в одтельный сервис, так как используется при генерации
-            if (_maze.MazePack.Map[neighbour.x, neighbour.z] == 1)
-                continue;
+            if (_maze.MazePack.Map[neighbour.x, neighbour.z] == 1) continue;
             //TODO - вынести это потом в BorderHandler
             if (neighbour.x < 1 || neighbour.x >= _maze.MazePack.Width || neighbour.z < 1 
-                || neighbour.z >= _maze.MazePack.Depth)
-                continue;
-            if (_closedMapList.IsClodes(neighbour))
-                continue;
+                || neighbour.z >= _maze.MazePack.Depth) continue;
+            if (_closedMapList.IsClodes(neighbour)) continue;
+            
+            //Подсчёт очков
             float g = ScoresHandler.CalculateGValue(thisNode.location.ToVector(), neighbour.ToVector(), thisNode.G);
             float h = ScoresHandler.CalculateHValue(neighbour.ToVector(), _goalNode.location.ToVector());
             float f = ScoresHandler.CalculateFValue();
             PathScores scores = _scoresHandler.GetScoresDataAStar(f,g,h);
             ScoresHandler.ClearCache();
+            
+            //Создание объекта
             Vector3 intermediatePos = new Vector3(neighbour.x * _data.Scale, 0, neighbour.z * _data.Scale);
             GameObject pathBlock = _marksCreater.CreateIntermediate(intermediatePos);
-            _mazePathMarkerHandler.SetText(pathBlock, _scoresHandler.GetScoresDataAStar(f,g,h));
+            
+            //Установка текста
+            _mazePathMarkerHandler.SetText(pathBlock, scores);
+            
+            //
+            if (!UpdateMarker(neighbour, scores, thisNode))
+            {
+                _openMapList.Add(new MazePathMarker(neighbour, scores, pathBlock, thisNode));
+            }
         }
+        MazePathMarker pathMarker = _openMapList.GetBestElement();
+        
+        _closedMapList.Add(pathMarker);
+
+        _openMapList.RemoveFirstElement();
+        _mazePathMarkerHandler.StitchToClosedMaterial(pathMarker);
+        
+        _lastNode = pathMarker;
     }
 
-    //TODO - это тоже надо вынести в отдельный сервис Handler
-    private void RemoveAllMarkers()
+    private bool UpdateMarker(MapLocationStruct neighbour, PathScores getScoresDataAStar, MazePathMarker thisNode)
     {
-        GameObject[] markers = GameObject.FindGameObjectsWithTag("marker");
-        foreach (GameObject m in markers)
+        if (_openMapList.CheckByUpdate(neighbour, getScoresDataAStar, thisNode))
         {
-            Destroy(m);
+            return true;
+        }
+        else
+        {
+            return false;
+
         }
     }
 }

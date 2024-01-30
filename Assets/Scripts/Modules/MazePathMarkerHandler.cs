@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class MazePathMarkerHandler : MonoBehaviour
 {
+    public Material closedMaterial;
+    //public Material openMaterial;
+    
+    
     private IScoreWriter _scoreWriter;
     bool _isCountMyStep;
     
@@ -111,6 +115,11 @@ public class MazePathMarkerHandler : MonoBehaviour
         }
 
         return ordered;
+    }
+
+    public void StitchToClosedMaterial(MazePathMarker pathMarker)
+    {
+        pathMarker.marker.GetComponent<Renderer>().material = closedMaterial;
     }
 }
 
