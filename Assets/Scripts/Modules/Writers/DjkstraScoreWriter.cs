@@ -1,20 +1,24 @@
+using Modules.Pathfinder;
 using UnityEngine;
 
-public class DjkstraScoreWriter : IScoreWriter
+namespace Modules.Writers
 {
-    private TextMesh _fString;
-    private TextMesh _gString;
-    private PathScores _scores;
-    public DjkstraScoreWriter(PathScores scores, TextMesh f, TextMesh g)
+    public class DjkstraScoreWriter : IScoreWriter
     {
-        _gString = g;
-        _fString = f;
-        _scores = scores;
-    }
+        private TextMesh _fString;
+        private TextMesh _gString;
+        private PathScores _scores;
+        public DjkstraScoreWriter(PathScores scores, TextMesh f, TextMesh g)
+        {
+            _gString = g;
+            _fString = f;
+            _scores = scores;
+        }
 
-    public void WriteScores()
-    {
-        _gString.text = "G: " + _scores.GScore.ToString("0.00");
-        _fString.text = "F: " + _scores.GScore.ToString("0.00"); 
+        public void WriteScores()
+        {
+            _gString.text = "G: " + _scores.GScore.ToString("0.00");
+            _fString.text = "F: " + _scores.GScore.ToString("0.00"); 
+        }
     }
 }

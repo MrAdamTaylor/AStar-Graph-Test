@@ -1,28 +1,29 @@
-using System.Collections;
 using System.Collections.Generic;
-using Modules.MazeGenerator;
-using UnityEngine;
+using Modules.Extensions;
+using Modules.MazeGenerator.Data;
 
-public class MazeLocations
+namespace Modules.MazeHeuristicHandler
 {
-    public List<MapLocationStruct> UsefulLocation;
-
-    public MazeLocations(MazeData data)
+    public class MazeLocations
     {
-        UsefulLocation = new List<MapLocationStruct>();
-        for (int z = 1; z < data.Depth; ++z)
+        public List<MapLocationStruct> UsefulLocation;
+
+        public MazeLocations(MazeData data)
         {
-            for (int x = 1; x < data.Width; ++x)
+            UsefulLocation = new List<MapLocationStruct>();
+            for (int z = 1; z < data.Depth; ++z)
             {
-                if (data.Map[x, z] != 1)
+                for (int x = 1; x < data.Width; ++x)
                 {
-                    UsefulLocation.Add(new MapLocationStruct(x,z));
+                    if (data.Map[x, z] != 1)
+                    {
+                        UsefulLocation.Add(new MapLocationStruct(x,z));
+                    }
                 }
             }
         }
-    }
     
-    /*public MazeLocations(byte[,] mapData, MazeData data)
+        /*public MazeLocations(byte[,] mapData, MazeData data)
     {
         UsefulLocation = new List<MapLocationStruct>();
         for (int z = 1; z < data.Depth - 1; z++)
@@ -37,18 +38,19 @@ public class MazeLocations
         }
     }*/
 
-    public void Shuffle()
-    {
-        UsefulLocation.Shuffle();
-    }
+        public void Shuffle()
+        {
+            UsefulLocation.Shuffle();
+        }
 
-    public int GetXByIndex(int index)
-    {
-        return UsefulLocation[index].x;
-    }
+        public int GetXByIndex(int index)
+        {
+            return UsefulLocation[index].x;
+        }
 
-    public int GetZByIndex(int index)
-    {
-        return UsefulLocation[index].z;
+        public int GetZByIndex(int index)
+        {
+            return UsefulLocation[index].z;
+        }
     }
 }

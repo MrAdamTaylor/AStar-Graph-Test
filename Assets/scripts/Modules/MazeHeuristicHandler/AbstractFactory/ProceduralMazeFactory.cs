@@ -1,7 +1,10 @@
-public class ProceduralMazeFactory : IMazeMarkFactory
+namespace Modules.MazeHeuristicHandler.AbstractFactory
 {
-    public IMazeMarkCreaterService LoadMarkCreaterService()
+    public class ProceduralMazeFactory : IMazeMarkFactory
     {
-        return new IMazeProceduralCreater();
+        public IMazeMarkCreaterService LoadMarkCreaterService()
+        {
+            return new IMazeProceduralCreater();
+        }
     }
 }

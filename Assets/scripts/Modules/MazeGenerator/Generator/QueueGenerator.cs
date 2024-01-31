@@ -1,7 +1,10 @@
 using System.Collections.Generic;
-using Lesson_4.Lesson4_GameSystem.Scripts.DIFramework;
+using Modules.Extensions;
+using Modules.MazeDataHandler;
+using Modules.MazeGenerator.Data;
+using Modules.MazeGenerator.Handlers;
 
-namespace Modules.MazeGenerator
+namespace Modules.MazeGenerator.Generator
 {
     public class QueueGenerator : IGenerate
     {

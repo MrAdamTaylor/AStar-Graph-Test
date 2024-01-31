@@ -1,9 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine;
 
 //TODO - пока это избыточный интерфейс, но планируется инъекция
-public interface IMarksCreater 
+namespace Modules.MazeHeuristicHandler.Services
 {
-
+    public interface IMarksCreater
+    {
+        public GameObject CreateStart(Vector3 vec);
+        public GameObject CreateFinish(Vector3 vec);
+        public GameObject CreateIntermediate(Vector3 vec);
+    }
 }

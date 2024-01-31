@@ -1,79 +1,84 @@
 using System.Collections.Generic;
 using System.Linq;
+using LegacyCode.AStar;
+using Modules.MazeGenerator.Data;
 using UnityEngine;
 
-public class OpenMapList
+namespace Modules.Pathfinder
 {
-    private List<MazePathMarker> _open;
-
-    public void Add(MazePathMarker pathMarker)
+    public class OpenMapList
     {
-        if (_open is null)
+        private List<MazePathMarker> _open;
+
+        public void Add(MazePathMarker pathMarker)
         {
-            _open = new List<MazePathMarker>();
+            if (_open is null)
+            {
+                _open = new List<MazePathMarker>();
+            }
+            _open.Add(pathMarker);
         }
-        _open.Add(pathMarker);
-    }
     
-    public void Clear()
-    {
-        if (_open is null)
+        public void Clear()
         {
-            return;
-        }
-        else
-        {
-            _open.Clear();
-        }
-    }
-
-    public bool IsOpen(MapLocationStruct intermediatePos)
-    {
-        foreach (MazePathMarker path in _open)
-        {
-            //TODO - надо проверить в первоисточниках, не используется ли этот метод
-            if (path.location.Equals(intermediatePos))
-                return true;
-        }
-        return false;
-    }
-
-    public void RemoveByPos(Vector3 intermediatePos)
-    {
-        for (int i = 0; i < _open.Count; i++)
-        {
-            if (intermediatePos == _open[i].marker.transform.position)
+            if (_open is null)
             {
-                _open.RemoveAt(i);
+                return;
+            }
+            else
+            {
+                _open.Clear();
             }
         }
-    }
 
-    public bool CheckByUpdate(MapLocationStruct pos, PathScores getScoresDataAStar, MazePathMarker thisNode)
-    {
-        for (int i = 0; i < _open.Count; i++)
+        public bool IsOpen(MapLocationStruct intermediatePos)
         {
-            if (_open[i].location.Equals(pos))
+            foreach (MazePathMarker path in _open)
             {
-                _open[i].G = getScoresDataAStar.GScore;
-                _open[i].H = getScoresDataAStar.HScore;
-                _open[i].F = getScoresDataAStar.FScore;
-                _open[i].parent = thisNode;
-                return true;
+                //TODO - надо проверить в первоисточниках, не используется ли этот метод
+                if (path.location.Equals(intermediatePos))
+                    return true;
+            }
+            return false;
+        }
+
+        public void RemoveByPos(Vector3 intermediatePos)
+        {
+            for (int i = 0; i < _open.Count; i++)
+            {
+                if (intermediatePos == _open[i].marker.transform.position)
+                {
+                    _open.RemoveAt(i);
+                }
             }
         }
-        return false;
-    }
 
-    public MazePathMarker GetBestElement()
-    {
-        _open = _open.OrderBy(p => p.F).ToList();
-        MazePathMarker pathMarker = _open.ElementAt(0);
-        return pathMarker;
-    }
+        public bool CheckByUpdate(MapLocationStruct pos, PathScores getScoresDataAStar, MazePathMarker thisNode)
+        {
+            for (int i = 0; i < _open.Count; i++)
+            {
+                if (_open[i].location.Equals(pos))
+                {
+                    _open[i].G = getScoresDataAStar.GScore;
+                    _open[i].H = getScoresDataAStar.HScore;
+                    _open[i].F = getScoresDataAStar.FScore;
+                    _open[i].parent = thisNode;
+                    return true;
+                }
+            }
+            return false;
+        }
 
-    public void RemoveFirstElement()
-    {
-        _open.RemoveAt(0);
+        public MazePathMarker GetBestElement()
+        {
+            _open = _open.OrderBy(p => p.F).ToList();
+            MazePathMarker pathMarker = _open.ElementAt(0);
+            return pathMarker;
+        }
+
+        public void RemoveFirstElement()
+        {
+            _open.RemoveAt(0);
+        }
     }
 }

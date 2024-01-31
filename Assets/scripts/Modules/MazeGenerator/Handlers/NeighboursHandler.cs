@@ -1,4 +1,6 @@
-namespace Modules.MazeGenerator
+using Modules.MazeGenerator.Data;
+
+namespace Modules.MazeGenerator.Handlers
 {
     public static class NeighboursHandler
     {

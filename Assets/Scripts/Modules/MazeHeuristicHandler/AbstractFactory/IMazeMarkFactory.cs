@@ -1,7 +1,10 @@
-public interface IMazeMarkFactory 
+namespace Modules.MazeHeuristicHandler.AbstractFactory
 {
-    public IMazeMarkCreaterService LoadMarkCreaterService()
+    public interface IMazeMarkFactory 
     {
-        throw new System.Exception("Не установлен сервис загрузки в фабрике маркеров");
+        public IMazeMarkCreaterService LoadMarkCreaterService()
+        {
+            throw new System.Exception("Не установлен сервис загрузки в фабрике маркеров");
+        }
     }
 }

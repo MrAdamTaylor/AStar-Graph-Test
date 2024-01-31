@@ -1,4 +1,4 @@
-namespace Modules.MazeGenerator
+namespace Modules.MazeGenerator.Drawer
 {
     public class DrawerInstaller
     {

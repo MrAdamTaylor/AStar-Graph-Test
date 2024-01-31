@@ -1,50 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Maze : MonoBehaviour
+namespace LegacyCode
 {
-    public List<MapLocation> directions = new List<MapLocation>() {
-                                            new MapLocation(1,0),
-                                            new MapLocation(0,1),
-                                            new MapLocation(-1,0),
-                                            new MapLocation(0,-1) };
-    
-    public int width = 30; //x length
-    public int depth = 30; //z length
-    public byte[,] map;
-    public int scale = 6;
-    
-    void Start()
+    public class Maze : MonoBehaviour
     {
-        InitialiseMap();
-        Generate();
-        DrawMap();
-    }
+        public List<MapLocation> directions = new List<MapLocation>() {
+            new MapLocation(1,0),
+            new MapLocation(0,1),
+            new MapLocation(-1,0),
+            new MapLocation(0,-1) };
+    
+        public int width = 30; //x length
+        public int depth = 30; //z length
+        public byte[,] map;
+        public int scale = 6;
+    
+        void Start()
+        {
+            InitialiseMap();
+            Generate();
+            DrawMap();
+        }
 
-    void InitialiseMap()
-    {
-        map = new byte[width,depth];
-        for (int z = 0; z < depth; z++)
+        void InitialiseMap()
+        {
+            map = new byte[width,depth];
+            for (int z = 0; z < depth; z++)
             for (int x = 0; x < width; x++)
             {
-                    map[x, z] = 1;     //1 = wall  0 = corridor
+                map[x, z] = 1;     //1 = wall  0 = corridor
             }
-    }
+        }
 
-    public virtual void Generate()
-    {
-        for (int z = 0; z < depth; z++)
+        public virtual void Generate()
+        {
+            for (int z = 0; z < depth; z++)
             for (int x = 0; x < width; x++)
             {
-               if(Random.Range(0,100) < 50)
-                 map[x, z] = 0;     //1 = wall  0 = corridor
+                if(Random.Range(0,100) < 50)
+                    map[x, z] = 0;     //1 = wall  0 = corridor
             }
-    }
+        }
 
-    void DrawMap()
-    {
-        for (int z = 0; z < depth; z++)
+        void DrawMap()
+        {
+            for (int z = 0; z < depth; z++)
             for (int x = 0; x < width; x++)
             {
                 if (map[x, z] == 1)
@@ -55,17 +56,18 @@ public class Maze : MonoBehaviour
                     wall.transform.position = pos;
                 }
             }
-    }
+        }
 
-    public int CountSquareNeighbours(int x, int z)
-    {
-        int count = 0;
-        if (x <= 0 || x >= width - 1 || z <= 0 || z >= depth - 1) return 5;
-        if (map[x - 1, z] == 0) count++;
-        if (map[x + 1, z] == 0) count++;
-        if (map[x, z + 1] == 0) count++;
-        if (map[x, z - 1] == 0) count++;
-        return count;
-    }
+        public int CountSquareNeighbours(int x, int z)
+        {
+            int count = 0;
+            if (x <= 0 || x >= width - 1 || z <= 0 || z >= depth - 1) return 5;
+            if (map[x - 1, z] == 0) count++;
+            if (map[x + 1, z] == 0) count++;
+            if (map[x, z + 1] == 0) count++;
+            if (map[x, z - 1] == 0) count++;
+            return count;
+        }
     
+    }
 }

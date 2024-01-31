@@ -1,4 +1,4 @@
-namespace Modules.MazeGenerator
+namespace Modules.MazeGenerator.Generator
 {
     public interface IGenerate
     {

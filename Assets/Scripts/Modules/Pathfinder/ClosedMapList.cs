@@ -1,50 +1,54 @@
 using System.Collections.Generic;
-using UnityEngine;
+using LegacyCode.AStar;
+using Modules.MazeGenerator.Data;
 
-public class ClosedMapList
+namespace Modules.Pathfinder
 {
-    private List<MazePathMarker> _closed;
-
-    public void Add(MazePathMarker pathMarker)
+    public class ClosedMapList
     {
-        if (_closed is null)
-        {
-            _closed = new List<MazePathMarker>();
-        }
-        _closed.Add(pathMarker);
-    }
+        private List<MazePathMarker> _closed;
 
-    public void Clear()
-    {
-        if (_closed is null)
+        public void Add(MazePathMarker pathMarker)
         {
-            return;
-        }
-        else
-        {
-            _closed.Clear();
-        }
-    }
-
-    public bool IsClodes(MapLocationStruct marker)
-    {
-        if (_closed == null)
-        {
-            return false;
+            if (_closed is null)
+            {
+                _closed = new List<MazePathMarker>();
+            }
+            _closed.Add(pathMarker);
         }
 
-        /*if (_closed == null)
+        public void Clear()
+        {
+            if (_closed is null)
+            {
+                return;
+            }
+            else
+            {
+                _closed.Clear();
+            }
+        }
+
+        public bool IsClodes(MapLocationStruct marker)
+        {
+            if (_closed == null)
+            {
+                return false;
+            }
+
+            /*if (_closed == null)
         {
             _closed = new List<MazePathMarker>();
         }*/
 
-        foreach (MazePathMarker path in _closed)
-        {
-            //TODO - надо проверить в первоисточниках, не используется ли этот метод
-            if (path.location.Equals(marker))
-                return true;
+            foreach (MazePathMarker path in _closed)
+            {
+                //TODO - надо проверить в первоисточниках, не используется ли этот метод
+                if (path.location.Equals(marker))
+                    return true;
+            }
+            return false;
         }
-        return false;
-    }
     
+    }
 }

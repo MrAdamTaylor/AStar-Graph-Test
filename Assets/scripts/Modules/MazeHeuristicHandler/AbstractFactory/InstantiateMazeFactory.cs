@@ -1,7 +1,10 @@
-class InstantiateMazeFactory : IMazeMarkFactory
+namespace Modules.MazeHeuristicHandler.AbstractFactory
 {
-    public IMazeMarkCreaterService LoadMarkCreaterService()
+    class InstantiateMazeFactory : IMazeMarkFactory
     {
-        return new IMazeLoader();
+        public IMazeMarkCreaterService LoadMarkCreaterService()
+        {
+            return new IMazeLoader();
+        }
     }
 }

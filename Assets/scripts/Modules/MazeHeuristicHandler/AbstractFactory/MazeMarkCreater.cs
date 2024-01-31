@@ -1,30 +1,33 @@
 using UnityEngine;
 
-public class MazeMarkCreater
+namespace Modules.MazeHeuristicHandler.AbstractFactory
 {
-    private IMazeMarkCreaterService _mazeMarkCreaterService;
-
-    public MazeMarkCreater(IMazeMarkFactory factory)
+    public partial class MazeMarkCreater
     {
-        _mazeMarkCreaterService = factory.LoadMarkCreaterService();
-    }
+        private IMazeMarkCreaterService _mazeMarkCreaterService;
 
-    public GameObject CreateStart()
-    {
-        GameObject startMarker = _mazeMarkCreaterService.CreateStartMarker();
-        return startMarker;
-    }
+        public MazeMarkCreater(IMazeMarkFactory factory)
+        {
+            _mazeMarkCreaterService = factory.LoadMarkCreaterService();
+        }
 
-    public GameObject CreateFinish()
-    {
-        GameObject finishMarker = _mazeMarkCreaterService.CreateFinishMarker();
-        return finishMarker;
-    }
+        public GameObject CreateStart()
+        {
+            GameObject startMarker = _mazeMarkCreaterService.CreateStartMarker();
+            return startMarker;
+        }
 
-    public GameObject CreateIntermediate()
-    {
-        GameObject intermediateMarker = _mazeMarkCreaterService.CreateIntermediateMarker();
-        return intermediateMarker;
-    }
+        public GameObject CreateFinish()
+        {
+            GameObject finishMarker = _mazeMarkCreaterService.CreateFinishMarker();
+            return finishMarker;
+        }
 
+        public GameObject CreateIntermediate()
+        {
+            GameObject intermediateMarker = _mazeMarkCreaterService.CreateIntermediateMarker();
+            return intermediateMarker;
+        }
+
+    }
 }

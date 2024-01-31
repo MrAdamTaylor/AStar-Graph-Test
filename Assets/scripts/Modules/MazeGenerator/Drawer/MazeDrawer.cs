@@ -1,6 +1,8 @@
+using Modules.MazeDataHandler;
+using Modules.MazeGenerator.Data;
 using UnityEngine;
 
-namespace Modules.MazeGenerator
+namespace Modules.MazeGenerator.Drawer
 {
     public class MazeDrawer : IMazeDrawer
     {

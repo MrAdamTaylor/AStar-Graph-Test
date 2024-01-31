@@ -1,23 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
 
-
-public static class DeepCloneExtension 
+namespace Modules.Extensions
 {
-    static public T DeepCopy<T>(this T obj)
+    public static class DeepCloneExtension 
     {
-        BinaryFormatter s = new BinaryFormatter();
-        using (MemoryStream ms = new MemoryStream())
+        static public T DeepCopy<T>(this T obj)
         {
-            s.Serialize(ms, obj);
-            ms.Position = 0;
-            T t = (T)s.Deserialize(ms);
+            BinaryFormatter s = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                s.Serialize(ms, obj);
+                ms.Position = 0;
+                T t = (T)s.Deserialize(ms);
 
-            return t;
+                return t;
+            }
         }
     }
 }

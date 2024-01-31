@@ -678,6 +678,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafedc2e591f6354d8712d09e188a5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1406123549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1406123551}
+  - component: {fileID: 1406123550}
+  m_Layer: 0
+  m_Name: MazeShellCreater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1406123550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406123549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bfe177723141a7b4a8700dcce5f6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1406123551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406123549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 89.45255, y: 173.40598, z: 25.700817}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1932816746
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,9 +783,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59dff1f1cef9324fa071526502d5cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pathfinderType: 2
+  _explorersParentName: ExplorerMarks
+  _pathParentName: FinalPath
   _marksCreater: {fileID: 1013567581}
   _maze: {fileID: 1932816747}
   _mazePathMarkerHandler: {fileID: 557718819}
+  _shellMarkCreater: {fileID: 1406123550}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -754,3 +802,4 @@ SceneRoots:
   - {fileID: 1209910358}
   - {fileID: 1013567580}
   - {fileID: 557718818}
+  - {fileID: 1406123551}

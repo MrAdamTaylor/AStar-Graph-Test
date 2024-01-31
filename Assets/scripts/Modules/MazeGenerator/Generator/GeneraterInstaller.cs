@@ -1,4 +1,6 @@
-namespace Modules.MazeGenerator
+using Modules.MazeGenerator.Data;
+
+namespace Modules.MazeGenerator.Generator
 {
     public class GeneraterInstaller
     {

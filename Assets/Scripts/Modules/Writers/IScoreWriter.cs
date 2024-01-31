@@ -1,7 +1,10 @@
-public interface IScoreWriter
+namespace Modules.Writers
 {
-    public void WriteScores()
+    public interface IScoreWriter
     {
+        public void WriteScores()
+        {
         
+        }
     }
 }

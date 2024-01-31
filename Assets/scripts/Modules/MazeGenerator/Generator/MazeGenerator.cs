@@ -1,8 +1,10 @@
-
-using System;
+using Modules.Extensions;
+using Modules.MazeDataHandler;
+using Modules.MazeGenerator.Data;
+using Modules.MazeGenerator.Drawer;
 using UnityEngine;
 
-namespace Modules.MazeGenerator
+namespace Modules.MazeGenerator.Generator
 {
     //TODO - временный костыль, пока ещё нет инджекций
     [DefaultExecutionOrder(-500)]

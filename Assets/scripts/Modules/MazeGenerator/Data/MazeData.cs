@@ -1,4 +1,4 @@
-namespace Modules.MazeGenerator
+namespace Modules.MazeGenerator.Data
 {
     public struct MazeData
     {

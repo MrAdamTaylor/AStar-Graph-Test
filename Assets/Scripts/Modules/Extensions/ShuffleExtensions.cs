@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-public static class ShuffleExtensions
+namespace Modules.Extensions
 {
-    private static System.Random rng = new System.Random();
-    public static void Shuffle<T>(this IList<T> list)
+    public static class ShuffleExtensions
     {
-        int n = list.Count;
-        while (n > 1)
+        private static System.Random rng = new System.Random();
+        public static void Shuffle<T>(this IList<T> list)
         {
-            n--;
-            int k = rng.Next(n + 1);
-            (list[k], list[n]) = (list[n], list[k]);
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                (list[k], list[n]) = (list[n], list[k]);
+            }
         }
-    }
 
+    }
 }

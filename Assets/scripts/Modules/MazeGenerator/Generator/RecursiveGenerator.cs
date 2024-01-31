@@ -1,4 +1,9 @@
-namespace Modules.MazeGenerator
+using Modules.Extensions;
+using Modules.MazeDataHandler;
+using Modules.MazeGenerator.Data;
+using Modules.MazeGenerator.Handlers;
+
+namespace Modules.MazeGenerator.Generator
 {
     public class RecursiveGenerator : IGenerate
     {

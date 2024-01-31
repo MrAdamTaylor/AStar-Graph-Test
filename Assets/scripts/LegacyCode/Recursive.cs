@@ -1,34 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Modules.Extensions;
 
-public class Recursive : Maze
+namespace LegacyCode
 {
-    #region С Рекурсией
-
-    public override void Generate()
+    public class Recursive : Maze
     {
-        Generate(5, 5);
-    }
+        #region С Рекурсией
 
-    void Generate(int x, int z)
-    {
-        if (CountSquareNeighbours(x, z) >= 2) return;
-        map[x, z] = 0;
+        public override void Generate()
+        {
+            Generate(5, 5);
+        }
 
-        directions.Shuffle();
+        void Generate(int x, int z)
+        {
+            if (CountSquareNeighbours(x, z) >= 2) return;
+            map[x, z] = 0;
 
-        Generate(x + directions[0].x, z + directions[0].z);
-        Generate(x + directions[1].x, z + directions[1].z);
-        Generate(x + directions[2].x, z + directions[2].z);
-        Generate(x + directions[3].x, z + directions[3].z);
-    }
+            directions.Shuffle();
+
+            Generate(x + directions[0].x, z + directions[0].z);
+            Generate(x + directions[1].x, z + directions[1].z);
+            Generate(x + directions[2].x, z + directions[2].z);
+            Generate(x + directions[3].x, z + directions[3].z);
+        }
     
-    #endregion
+        #endregion
 
-    #region Без рекурсии
+        #region Без рекурсии
 
-    /*public override void Generate()
+        /*public override void Generate()
     {
         Stack<MapLocationStruct> stack = new Stack<MapLocationStruct>();
         stack.Push(new MapLocationStruct(5, 5));
@@ -61,6 +61,7 @@ public class Recursive : Maze
         }
     }*/
     
-    #endregion
+        #endregion
 
+    }
 }

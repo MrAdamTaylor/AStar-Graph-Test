@@ -1,15 +1,18 @@
-public static class MatrixFullExtension
+namespace Modules.Extensions
 {
-    public static byte[,] FullOneMatrix(this byte[,] matrix, int width, int depth)
+    public static class MatrixFullExtension
     {
-        matrix = new byte[width, depth];
-        for (int z = 0; z < depth; z++)
+        public static byte[,] FullOneMatrix(this byte[,] matrix, int width, int depth)
         {
-            for (int x = 0; x < width; x++)
+            matrix = new byte[width, depth];
+            for (int z = 0; z < depth; z++)
             {
-                matrix[x, z] = 1;     //1 = wall  0 = corridor
+                for (int x = 0; x < width; x++)
+                {
+                    matrix[x, z] = 1;     //1 = wall  0 = corridor
+                }
             }
+            return matrix;
         }
-        return matrix;
     }
 }

@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public interface IMazeMarkCreaterService
+namespace Modules.MazeHeuristicHandler.AbstractFactory
 {
-    GameObject CreateStartMarker();
-    GameObject CreateFinishMarker();
-    GameObject CreateIntermediateMarker();
+    public interface IMazeMarkCreaterService
+    {
+        GameObject CreateStartMarker();
+        GameObject CreateFinishMarker();
+        GameObject CreateIntermediateMarker();
+    }
 }

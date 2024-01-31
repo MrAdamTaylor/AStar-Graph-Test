@@ -1,4 +1,4 @@
-namespace Modules.MazeGenerator
+namespace Modules.MazeHeuristicHandler
 {
     public static class MazeHandlersConstants
     {

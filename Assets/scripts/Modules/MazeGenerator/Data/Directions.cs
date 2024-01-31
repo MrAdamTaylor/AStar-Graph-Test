@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Modules.MazeGenerator
+namespace Modules.MazeGenerator.Data
 {
     public static class Directions
     {
