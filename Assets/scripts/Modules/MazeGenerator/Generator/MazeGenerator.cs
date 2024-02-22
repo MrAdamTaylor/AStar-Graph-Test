@@ -11,20 +11,30 @@ namespace Modules.MazeGenerator.Generator
     public class MazeGenerator : MonoBehaviour
     {
         [SerializeField] private bool _isOptimization;
+        [SerializeField] private bool _isMaze = true;
         [SerializeField] private int _width = 30;
         [SerializeField] private int _depth = 30;
         [SerializeField] private int _scale = 5;
         private byte[,] _map;
         public MazeData MazePack;
 
+        private IGenerate _generater;
+
         void Awake()
         {
             MazePack = FullMazeData(_width, _depth, _map, _scale);
             GeneraterInstaller generaterIinstaller = new GeneraterInstaller();
             DrawerInstaller drawerInstaller = new DrawerInstaller();
-            IGenerate generater = generaterIinstaller.GetGenerator(_isOptimization,MazePack);
             IMazeDrawer mazeDrawer = drawerInstaller.GetDrawer();
-            generater.Generate();
+            if (_isMaze)
+            {
+                _generater = generaterIinstaller.GetGenerator(_isOptimization,MazePack);
+            }
+            else
+            {
+                _generater = new NonMazeGenerate(MazePack);
+            }
+            _generater.Generate();
             mazeDrawer.DrawMap();
             MazePack = (MazeData)MazeServiceLocator.Instance.GetData(typeof(MazeData));
         }

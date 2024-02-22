@@ -11,9 +11,9 @@ namespace Modules.MazeHeuristicHandler
         public MazeLocations(MazeData data)
         {
             UsefulLocation = new List<MapLocationStruct>();
-            for (int z = 1; z < data.Depth; ++z)
+            for (int z = 0; z < data.Depth; ++z)
             {
-                for (int x = 1; x < data.Width; ++x)
+                for (int x = 0; x < data.Width; ++x)
                 {
                     if (data.Map[x, z] != 1)
                     {

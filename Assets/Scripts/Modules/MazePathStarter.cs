@@ -152,13 +152,7 @@ namespace Modules
                 if (neighbour.x < 1 || neighbour.x >= _maze.MazePack.Width || neighbour.z < 1 
                     || neighbour.z >= _maze.MazePack.Depth) continue;
                 if (_closedMapList.IsClodes(neighbour)) continue;
-            
-                //Подсчёт очков
-                /*float g = ScoresHandler.CalculateGValue(thisNode.location.ToVector(), neighbour.ToVector(), thisNode.G);
-            float h = ScoresHandler.CalculateHValue(neighbour.ToVector(), _goalNode.location.ToVector());
-            float f = ScoresHandler.CalculateFValue();
-            PathScores scores = _scoresHandler.GetScoresDataAStar(f,g,h);
-            ScoresHandler.ClearCache();*/
+                
                 PathScores scores = _pathfinder.GetPathScores(_scoresHandler, thisNode, _goalNode, neighbour);
             
             
