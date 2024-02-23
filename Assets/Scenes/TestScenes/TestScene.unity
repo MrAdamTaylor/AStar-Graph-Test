@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59a1d6129dbbb4c976bb39abbbb374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _alghorythmBehaviour: 2
-  _accuracy: 0
+  _alghorythmBehaviour: 0.29
+  _accuracy: 2
 --- !u!1 &778035745
 GameObject:
   m_ObjectHideFlags: 0
