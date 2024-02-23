@@ -816,6 +816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59dff1f1cef9324fa071526502d5cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alghorythmBehaviour: 2
+  _strenghtProbability: 0
   _pathfinderType: 1
   _explorersParentName: ExplorerMarks
   _pathParentName: FinalPath

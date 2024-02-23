@@ -8,10 +8,23 @@ using Modules.Pathfinder.BFS;
 using Modules.Pathfinder.Djkstra;
 using UnityEngine;
 
+public enum AlghorythmChoiseType
+{
+    Probability
+}
+
 namespace Modules
 {
     public class MazePathStarter : MonoBehaviour
     {
+        [Range(0, 2)] 
+        [SerializeField] private float _alghorythmBehaviour;
+
+        [Header("Точность")]
+        [Range(10, 100)] 
+        [SerializeField] private float _strenghtProbability;
+        
+        
         [SerializeField] private PathfinderTypes _pathfinderType;
         [SerializeField] private string _explorersParentName;
         [SerializeField] private string _pathParentName;
@@ -57,7 +70,14 @@ namespace Modules
             _openMapList = new OpenMapList();
             _closedMapList = new ClosedMapList();
             ChoseAlghorythm();
+            ChoseAlghorythmByProbability(_alghorythmBehaviour, _strenghtProbability);
         }
+
+        private void ChoseAlghorythmByProbability(float behaviour, float strenght)
+        {
+            
+        }
+
 
         private void ChoseAlghorythm()
         {
