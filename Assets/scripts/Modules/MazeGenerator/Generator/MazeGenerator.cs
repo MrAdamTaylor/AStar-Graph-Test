@@ -4,14 +4,24 @@ using Modules.MazeGenerator.Data;
 using Modules.MazeGenerator.Drawer;
 using UnityEngine;
 
+public enum GeneratorType
+{
+     Maze,
+     NonMaze,
+     Points,
+     SomwObjects
+}
+
 namespace Modules.MazeGenerator.Generator
 {
     //TODO - временный костыль, пока ещё нет инджекций
     [DefaultExecutionOrder(-500)]
     public class MazeGenerator : MonoBehaviour
     {
+        [Header("Внимание, при постановке этой галочки будет только лабиринт")]
         [SerializeField] private bool _isOptimization;
-        [SerializeField] private bool _isMaze = true;
+        //[SerializeField] private bool _isMaze = true;
+        [SerializeField] private GeneratorType _generatorType;
         [SerializeField] private int _width = 30;
         [SerializeField] private int _depth = 30;
         [SerializeField] private int _scale = 5;
@@ -26,13 +36,13 @@ namespace Modules.MazeGenerator.Generator
             GeneraterInstaller generaterIinstaller = new GeneraterInstaller();
             DrawerInstaller drawerInstaller = new DrawerInstaller();
             IMazeDrawer mazeDrawer = drawerInstaller.GetDrawer();
-            if (_isMaze)
+            if (_isOptimization)
             {
                 _generater = generaterIinstaller.GetGenerator(_isOptimization,MazePack);
             }
             else
             {
-                _generater = new NonMazeGenerate(MazePack);
+                _generater = generaterIinstaller.GetGenerator(_generatorType, MazePack);
             }
             _generater.Generate();
             mazeDrawer.DrawMap();

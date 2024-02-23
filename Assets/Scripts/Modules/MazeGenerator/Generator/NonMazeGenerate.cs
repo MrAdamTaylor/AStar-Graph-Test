@@ -16,11 +16,11 @@ namespace Modules.MazeGenerator.Generator
 
         public void Generate()
         {
-            GenerateNonMaze(MazeConstants.XCord,MazeConstants.YCord);
+            GenerateNonMaze();
             GetMapData();
         }
 
-        private void GenerateNonMaze(int x, int z)
+        private void GenerateNonMaze()
         {
             for (int i = 0; i < _mazeData.Map.GetLength(0); i++)
             {
