@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f219a2a63e6ef7488663df21168b548, type: 3}
+  m_Name: ProbabilityGameObjectData
+  m_EditorClassIdentifier: 
+  Percantage:
+  - 35
+  - 20
+  - 15
+  - 30
+  ObjectsToSpawn:
+  - {fileID: 4420506881939300944, guid: 4b254821b0b96414c97903e2e6299f16, type: 3}
+  - {fileID: 4735507146799558016, guid: f758400f9279a194b9cabee227d478a0, type: 3}
+  - {fileID: 8256934296481898712, guid: b1857004dee8683449a4abbf32ebe4e3, type: 3}
+  - {fileID: 1447314656176831245, guid: 6746566ce7041634d82d4d2c40c2e30c, type: 3}
