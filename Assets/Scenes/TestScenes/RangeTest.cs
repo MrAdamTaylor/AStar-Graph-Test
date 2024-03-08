@@ -16,6 +16,9 @@ public class RangeTest : MonoBehaviour
     private float _range;
     private int[] _percentage;
 
+    private int pointOne = 0;
+    private int pointTwo = 0;
+
     private ProbabilityBufCalculater _probability;
 
     private void Start()
@@ -23,13 +26,12 @@ public class RangeTest : MonoBehaviour
         _alghorythms = new string[2];
         BufCreater bufCreater = new BufCreater();
         _range = ChoiseAlghorythm(_alghorythmBehaviour);
-        Debug.Log(_range);
+        Debug.Log("Alghorythm Range: " + _range);
         _percentage = bufCreater.CreateBuf(_range, AccuracyInterpretator(_accuracy));
         for (int i = 0; i < _percentage.Length; i++)
         {
             Debug.Log($"Buf{i+1} - {_percentage[i]}");
         }
-
         _probability = new ProbabilityBufCalculater();
         _probability.Construct(_percentage.ToFloat());
     }
@@ -65,8 +67,8 @@ public class RangeTest : MonoBehaviour
     {
         if (_alghorythmBehaviour.Equals(0f))
         {
-            _alghorythmName = "GBFS";
-            Debug.Log("Only GBFS");
+            _alghorythmName = "Dijkstra";
+            Debug.Log("Only Dijkstra");
             _alghorythms[0] = _alghorythmName; 
             return 0f;
         }
@@ -81,8 +83,8 @@ public class RangeTest : MonoBehaviour
 
         if (_alghorythmBehaviour.Equals(2f))
         {
-            _alghorythmName = "Djkstra";
-            Debug.Log("OnlyDjkstra");
+            _alghorythmName = "GBFS";
+            Debug.Log("OnlyGBFS");
             _alghorythms[0] = _alghorythmName; 
             return 0f;
         }
@@ -92,17 +94,17 @@ public class RangeTest : MonoBehaviour
             if (_alghorythmBehaviour > 0.5f)
             {
                 _alghorythmName = "AStar";
-                _secondAlghorythmName = "GBFS";
-                Debug.Log("AStar and GBFS");
+                _secondAlghorythmName = "Dijkstra";
+                Debug.Log("AStar and Dijkstra");
                 _alghorythms[0] = _alghorythmName; 
                 _alghorythms[1] = _secondAlghorythmName; 
                 return _alghorythmBehaviour;
             }
             else
             {
-                _alghorythmName = "GBFS";
+                _alghorythmName = "Dijkstra";
                 _secondAlghorythmName = "AStar";
-                Debug.Log("GBFS and AStar");
+                Debug.Log("Dijkstra and AStar");
                 _alghorythms[0] = _alghorythmName; 
                 _alghorythms[1] = _secondAlghorythmName; 
                 return _alghorythmBehaviour;
@@ -112,21 +114,21 @@ public class RangeTest : MonoBehaviour
         {
             if (_alghorythmBehaviour > 1.5f)
             {
-                _alghorythmName = "Dijkstra";
+                _alghorythmName = "GBFS";
                 _secondAlghorythmName = "AStar";
-                Debug.Log("Dijkstra and AStar");
+                Debug.Log("GBFS and AStar");
                 _alghorythms[0] = _alghorythmName; 
                 _alghorythms[1] = _secondAlghorythmName; 
                 return _alghorythmBehaviour - 1f;
             }
             else
             {
-                _alghorythmName = "AStar";
-                _secondAlghorythmName = "Dijkstra";
-                Debug.Log("AStar and Dijkstra");
+                _alghorythmName = "GBFS";
+                _secondAlghorythmName = "AStar";
+                Debug.Log("AStar and GBFS");
                 _alghorythms[0] = _alghorythmName; 
                 _alghorythms[1] = _secondAlghorythmName; 
-                return _alghorythmBehaviour - 1f;
+                return _alghorythmBehaviour - 1;
             }
         }
     }
@@ -135,13 +137,40 @@ public class RangeTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            MakeStep();
+            if(_alghorythms[1] != null)
+                MakeProbabilityStep();
+            else
+            {
+                MakeUsualStep();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log($"Очки: Главный алгоритм: Очки: {pointOne} Название: {_alghorythms[0]} и второстепенный алгоритм Очки: {pointTwo} Название: {_alghorythms[1]}");
         }
     }
 
-    private void MakeStep()
+    private void MakeUsualStep()
+    {
+        Debug.Log(_alghorythms[0]);
+    }
+
+    private void MakeProbabilityStep()
     {
         int value = _probability.GetRandomValue(_alghorythms);
         Debug.Log(_alghorythms[value]);
+
+        if (value == 0)
+        {
+            pointOne++;
+        }
+
+        if (value == 1)
+        {
+            pointTwo++;
+        }
     }
 }
+
+

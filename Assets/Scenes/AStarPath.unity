@@ -724,7 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _alghorythmBehaviour: 2
   _strenghtProbability: 0
-  _pathfinderType: 1
+  _pathfinderType: 2
   _explorersParentName: ExplorerMarks
   _pathParentName: FinalPath
   _marksCreater: {fileID: 1013567581}

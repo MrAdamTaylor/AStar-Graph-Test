@@ -102,14 +102,10 @@ public class BufCreater
             if (i == 1)
             {
                 float temp = (1 - range) * accuracy;
-                //buf[i] = 
-                //Mathf.CeilToInt(buf[i]);
-
                 buf[i] = Mathf.CeilToInt(temp);
             }
             else
             {
-                //buf[i] = range * accuracy;
                 float temp = range * accuracy;
                 buf[i] = Mathf.CeilToInt(temp);
 
